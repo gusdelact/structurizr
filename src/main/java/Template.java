@@ -10,7 +10,7 @@ import com.structurizr.view.*;
  *
  * The live workspace is available to view at https://structurizr.com/share/25441
  */
-public class Monolithic {
+public class Template {
 
     private static final long WORKSPACE_ID = 38505;
     private static final String API_KEY = "2a7ff768-c92e-4ccf-9d71-ec19484864eb";
