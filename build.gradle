@@ -6,10 +6,16 @@ repositories {
 }
 
 dependencies {
-    compile 'com.structurizr:structurizr-core:1.0.0-RC4'
+    compile 'com.structurizr:structurizr-core:1.0.0-RC4' 
+    compile files('libs/structurizr-core-1.0.0-RC5.jar')
 }
 
-mainClassName = "Structurizr"
+if (project.hasProperty('file')) {
+    mainClassName = file
+}
+else {
+    mainClassName = "Structurizr"
+}
 
 compileJava.options.encoding = 'UTF-8'
 compileTestJava.options.encoding = 'UTF-8'
