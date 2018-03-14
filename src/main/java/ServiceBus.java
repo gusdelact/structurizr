@@ -40,7 +40,11 @@ public class ServiceBus {
         	
 	
 	workspaceMonolitico.getViews().getSystemLandscapeViews().stream().forEach(c -> views.createSystemLandscapeView(c.getKey(), c.getDescription()));
+
+	workspaceMonolitico.getViews().getSystemContextViews().stream().forEach(c -> views.createSystemContextView(c.getKey(), c.getDescription()));
+	workspaceMonolitico.getViews().getComponentViews().stream().forEach(c -> views.createComponentView(c.getKey(), c.getDescription()));
 	
+	workspaceMonolitico.getViews().getContainerViews().stream().forEach(c -> views.createContainerView(c.getKey(), c.getDescription()));
 
 	//SystemLandscapeView systemView = views.createSystemLandscapeView("Sistema", "");
 //        systemView.addAllElements();
