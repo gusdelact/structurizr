@@ -23,8 +23,7 @@ public class ClienteServidor {
     private static final String DATABASE_TAG = "Database";
 
 
-
-    public static void main(String[] args) throws Exception {
+    public static Workspace create() { 
         // Workspace
         Workspace workspace = new Workspace("Getting Started", "This is a model of my software system.");
         Model model = workspace.getModel();
@@ -77,8 +76,9 @@ public class ClienteServidor {
 	addStylingToDiagrams(views);
 
         // upload to structurizr.com (you'll need your own workspace ID, API key and API secret)
+	
+	return workspace;
 
-	uploadWorkspaceToStructurizr(workspace);
     }
 
 
@@ -114,4 +114,9 @@ public class ClienteServidor {
         structurizrClient.putWorkspace(WORKSPACE_ID, workspace);
     }
 
+
+    public static void main(String[] args) throws Exception {
+
+	uploadWorkspaceToStructurizr(create());
+    }
 }

@@ -12,9 +12,9 @@ import com.structurizr.view.*;
  */
 public class Monolitico {
 
-    private static final long WORKSPACE_ID = 38505;
-    private static final String API_KEY = "2a7ff768-c92e-4ccf-9d71-ec19484864eb";
-    private static final String API_SECRET = "7e1779dc-9a08-4246-9a0a-a11ce2a5a981";
+    private static final long WORKSPACE_ID = 38549;
+    private static final String API_KEY = "fa603ed4-775b-44e6-9d69-5ee8518d881b";
+    private static final String API_SECRET = "44e200f6-b14f-420a-a1c3-715c2c70bf1b";
 
     private static final String MICROSERVICE_TAG = "Microservice";
     private static final String MESSAGE_BUS_TAG = "Message Bus";
@@ -23,8 +23,8 @@ public class Monolitico {
     private static final String DATABASE_TAG = "Database";
 
 
+    public static Workspace create() { 
 
-    public static void main(String[] args) throws Exception {
         // Workspace
         Workspace workspace = new Workspace("Getting Started", "This is a model of my software system.");
         Model model = workspace.getModel();
@@ -68,11 +68,11 @@ public class Monolitico {
 
         // add some styling to the diagram elements
 
-	addStylingToDiagrams(views);
 
+	addStylingToDiagrams(views);
         // upload to structurizr.com (you'll need your own workspace ID, API key and API secret)
 
-	uploadWorkspaceToStructurizr(workspace);
+	return workspace;
     }
 
 
@@ -106,6 +106,12 @@ public class Monolitico {
     private static void uploadWorkspaceToStructurizr(Workspace workspace) throws Exception {
         StructurizrClient structurizrClient = new StructurizrClient(API_KEY, API_SECRET);
         structurizrClient.putWorkspace(WORKSPACE_ID, workspace);
+    }
+
+
+    public static void main(String[] args) throws Exception {
+
+	uploadWorkspaceToStructurizr(create());
     }
 
 }
