@@ -57,6 +57,10 @@ public class Microservicios {
 	
 
 	//Elements Tags
+	
+        dataBaseEmpresarialFirst.addTags(DATABASE_TAG);
+        dataBaseEmpresarialSecond.addTags(DATABASE_TAG);
+        dataBaseEmpresarialThird.addTags(DATABASE_TAG);
 
 	// Connections
   
