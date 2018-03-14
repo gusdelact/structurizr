@@ -13,9 +13,9 @@ import com.structurizr.view.*;
 public class Microservicios {
 
 
-    private static final long WORKSPACE_ID = 38505;
-    private static final String API_KEY = "2a7ff768-c92e-4ccf-9d71-ec19484864eb";
-    private static final String API_SECRET = "7e1779dc-9a08-4246-9a0a-a11ce2a5a981";
+    private static final long WORKSPACE_ID = 38565;
+    private static final String API_KEY = "9a853f81-19ed-475d-a218-40022362c8b2";
+    private static final String API_SECRET = "23bf7a7e-2c0b-4e57-9143-71c386922ee8";
 
     private static final String MICROSERVICE_TAG = "Microservice";
     private static final String MESSAGE_BUS_TAG = "Message Bus";
@@ -48,6 +48,9 @@ public class Microservicios {
 	Component serviciosEmpresarialFirst = empresarial.addComponent("Servicio 1", "");
 	Component serviciosEmpresarialSecond = empresarial.addComponent("Servicio 2", "");
 	Component serviciosEmpresarialThird = empresarial.addComponent("Servicio 3", "");
+	Component dataBaseEmpresarialFirst = empresarial.addComponent("BD 1", "");
+	Component dataBaseEmpresarialSecond = empresarial.addComponent("BD 2", "");
+	Component dataBaseEmpresarialThird = empresarial.addComponent("BD 3", "");
         Component serviciosTwitterFirst = twitter.addComponent("Servicio 1", "");
         Component serviciosTwitterSecond = twitter.addComponent("Servicio 2", "");
         Component serviciosTwitterThird = twitter.addComponent("Servicio 3", "");
@@ -70,6 +73,9 @@ public class Microservicios {
 	user.uses(serviciosTwitterFirst, "Usa");
 	user.uses(serviciosTwitterSecond, "Usa");
 	user.uses(serviciosTwitterThird, "Usa");
+	serviciosEmpresarialFirst.uses(dataBaseEmpresarialFirst, "");
+	serviciosEmpresarialSecond.uses(dataBaseEmpresarialSecond, "");
+	serviciosEmpresarialThird.uses(dataBaseEmpresarialThird, "");
 
 	//Landscape view
 	
