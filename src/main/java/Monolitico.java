@@ -33,7 +33,7 @@ public class Monolitico {
 	// Elements
 	
 
-        SoftwareSystem sistema = model.addSoftwareSystem("Sistema", "Desc...");
+        SoftwareSystem sistema = model.addSoftwareSystem("Sistema Monolitico", "Desc...");
         
         Person user = model.addPerson("Usuario", "");
        

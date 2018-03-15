@@ -32,7 +32,7 @@ public class ClienteServidor {
 	// Elements
 	
 
-        SoftwareSystem sistema = model.addSoftwareSystem("Sistema", "Desc...");
+        SoftwareSystem sistema = model.addSoftwareSystem("Sistema Cliente Servidor", "Desc...");
 
         Container cliente = sistema.addContainer("Cliente", "Desc...","");
         Container servidor = sistema.addContainer("Servidor", "Desc...","");
