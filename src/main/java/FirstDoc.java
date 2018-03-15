@@ -12,9 +12,9 @@ import com.structurizr.view.*;
  */
 public class FirstDoc {
 
-    private static final long WORKSPACE_ID = 38505;
-    private static final String API_KEY = "2a7ff768-c92e-4ccf-9d71-ec19484864eb";
-    private static final String API_SECRET = "7e1779dc-9a08-4246-9a0a-a11ce2a5a981";
+    private static final long WORKSPACE_ID = 38550;
+    private static final String API_KEY = "134d5f9f-5a5d-4913-9944-bdb3bfd7a8f3";
+    private static final String API_SECRET = "f9f881a3-6d26-41fe-b310-c9b0f46d2e1c";
 
     private static final String MICROSERVICE_TAG = "Microservice";
     private static final String MESSAGE_BUS_TAG = "Message Bus";
