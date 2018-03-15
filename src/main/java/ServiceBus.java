@@ -154,7 +154,7 @@ public class ServiceBus {
            System.out.println(destination.getParent().getClass());
 
 
-           Relationship Nrelationship = new Relationship();//source, destination, description, technology, InteractionStyle.Synchronous);
+           //Relationship Nrelationship = new Relationship();//source, destination, description, technology, InteractionStyle.Synchronous);
 
            //StaticStructureElement().uses(source, destination, description, technology, InteractionStyle.Synchronous);
 

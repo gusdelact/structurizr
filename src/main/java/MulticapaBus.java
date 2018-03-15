@@ -10,11 +10,11 @@ import com.structurizr.view.*;
  *
  * The live workspace is available to view at https://structurizr.com/share/25441
  */
-public class Multicapa {
+public class MulticapaBus {
 
-    private static final long WORKSPACE_ID = 38549;
-    private static final String API_KEY = "fa603ed4-775b-44e6-9d69-5ee8518d881b";
-    private static final String API_SECRET = "44e200f6-b14f-420a-a1c3-715c2c70bf1b";
+    private static final long WORKSPACE_ID = 38550;
+    private static final String API_KEY = "134d5f9f-5a5d-4913-9944-bdb3bfd7a8f3";
+    private static final String API_SECRET = "f9f881a3-6d26-41fe-b310-c9b0f46d2e1c";
 
     private static final String MICROSERVICE_TAG = "Microservice";
     private static final String MESSAGE_BUS_TAG = "Message Bus";
@@ -22,38 +22,48 @@ public class Multicapa {
     private static final String STAFF_TAG = "Staff";
     private static final String DATABASE_TAG = "Database";
 
+    private static SoftwareSystem bus;   
+    private static SoftwareSystem sistema;
+    private static Container interfazContenedor;
+    private static Container presentacionContenedor;
+    private static Container logicaContenedor;
+    private static Container persistenciaContenedor;
+    private static Component interfaz;
+    private static Component presentacion;
+    private static Component logica;
+    private static Component persistencia;
 
 
-    public static Workspace create() { 
+
+    MulticapaBus(Workspace workspace) { 
         // Workspace
-        Workspace workspace = new Workspace("Getting Started", "This is a model of my software system.");
         Model model = workspace.getModel();
 	ViewSet views = workspace.getViews();
 
 	// Elements
         
-        Person user = model.addPerson("Usuario", "");
+        bus = model.getSoftwareSystemWithName("Bus de Servicios");
        
-	SoftwareSystem sistema = model.addSoftwareSystem("Sistema", "Desc...");
+	sistema = model.addSoftwareSystem("Sistema Multicapa", "Desc...");
 
-	Container interfazContenedor = sistema.addContainer("Contenedor Interfaz de usuario", "Desc...", "");
-	Container presentacionContenedor = sistema.addContainer("Contenedor Presentacion", "Desc...", "");
-        Container logicaContenedor = sistema.addContainer("Contenedor Logica", "Desc...", "");
-	Container persistenciaContenedor = sistema.addContainer("Contenedor Persistencia", "Desc...", "...");
+	interfazContenedor = sistema.addContainer("Contenedor Interfaz de usuario", "Desc...", "");
+	presentacionContenedor = sistema.addContainer("Contenedor Presentacion", "Desc...", "");
+        logicaContenedor = sistema.addContainer("Contenedor Logica", "Desc...", "");
+	persistenciaContenedor = sistema.addContainer("Contenedor Persistencia", "Desc...", "...");
 
-	Component interfaz = interfazContenedor.addComponent("Interfaz de usuario", "");
-	Component presentacion = presentacionContenedor.addComponent("Presentacion", "");
-        Component logica =logicaContenedor.addComponent("Logica", "");
-	Component persistencia = persistenciaContenedor.addComponent("Persistencia", "");
+	interfaz = interfazContenedor.addComponent("Interfaz de usuario", "");
+	presentacion = presentacionContenedor.addComponent("Presentacion", "");
+        logica =logicaContenedor.addComponent("Logica", "");
+	persistencia = persistenciaContenedor.addComponent("Persistencia", "");
 
 	//Elements Tags
 
 
 	// Connections
   
-	user.uses(sistema, "Usa");
-        user.uses(interfazContenedor, "Usa");
-	user.uses(interfaz, "Usa");
+	sistema.uses(bus, "");
+        interfazContenedor.uses(bus, "");
+	interfaz.uses(bus, "");
 	interfazContenedor.uses(presentacionContenedor, "Usa");
 	interfazContenedor.uses(presentacion, "Usa");
 	interfaz.uses(presentacionContenedor, "Usa");
@@ -63,11 +73,18 @@ public class Multicapa {
 	logicaContenedor.uses(persistenciaContenedor, "Usa");
 	logicaContenedor.uses(persistencia, "Usa");
 	logica.uses(persistenciaContenedor, "Usa");
+    }
 
+
+    public static void loadViews (Workspace workspace) { 
 	//Landscape view
 	
-	SystemLandscapeView systemView = views.createSystemLandscapeView("Sistema", "");
-        systemView.addAllElements();
+	Model model = workspace.getModel();
+	ViewSet views = workspace.getViews();
+
+
+	SystemContextView contextView = views.createSystemContextView(sistema, "Sistema", "");
+	contextView.addNearestNeighbours(sistema);
 
 	ContainerView containerView = views.createContainerView(sistema, "Contenedores", "");
 	containerView.addAllElements();
@@ -92,7 +109,6 @@ public class Multicapa {
 
         // upload to structurizr.com (you'll need your own workspace ID, API key and API secret)
 
-	return workspace;
     }
 
 
@@ -129,8 +145,8 @@ public class Multicapa {
     }
 
 
-    public static void main(String[] args) throws Exception {
+/*    public static void main(String[] args) throws Exception {
 	    
 	uploadWorkspaceToStructurizr(create());
-    }
+    }*/
 }

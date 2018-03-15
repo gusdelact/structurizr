@@ -10,7 +10,7 @@ import com.structurizr.view.*;
  *
  * The live workspace is available to view at https://structurizr.com/share/25441
  */
-public class Multicapa {
+public class MonoliticoBus {
 
     private static final long WORKSPACE_ID = 38549;
     private static final String API_KEY = "fa603ed4-775b-44e6-9d69-5ee8518d881b";
@@ -22,77 +22,69 @@ public class Multicapa {
     private static final String STAFF_TAG = "Staff";
     private static final String DATABASE_TAG = "Database";
 
+    private static SoftwareSystem bus; 
+    private static SoftwareSystem sistema; 
+    private static Container mainframe; 
+    private static Component interfaz;     
+    private static Component logica;     
+    private static Component persistencia;
+    
 
+    MonoliticoBus (Workspace workspace) { 
 
-    public static Workspace create() { 
         // Workspace
-        Workspace workspace = new Workspace("Getting Started", "This is a model of my software system.");
         Model model = workspace.getModel();
 	ViewSet views = workspace.getViews();
 
+
 	// Elements
+	
+
+        bus = model.getSoftwareSystemWithName("Bus de Servicios");
+        sistema = model.addSoftwareSystem("Sistema MonoliticoBus", "Desc...");
         
-        Person user = model.addPerson("Usuario", "");
        
-	SoftwareSystem sistema = model.addSoftwareSystem("Sistema", "Desc...");
+	mainframe = sistema.addContainer("Mainframe", "", "");
 
-	Container interfazContenedor = sistema.addContainer("Contenedor Interfaz de usuario", "Desc...", "");
-	Container presentacionContenedor = sistema.addContainer("Contenedor Presentacion", "Desc...", "");
-        Container logicaContenedor = sistema.addContainer("Contenedor Logica", "Desc...", "");
-	Container persistenciaContenedor = sistema.addContainer("Contenedor Persistencia", "Desc...", "...");
+	interfaz = mainframe.addComponent("Interfaz de usuario", "", "");
+        logica = mainframe.addComponent("Logica", "", "");
+	persistencia = mainframe.addComponent("Persistencia", "", "");
 
-	Component interfaz = interfazContenedor.addComponent("Interfaz de usuario", "");
-	Component presentacion = presentacionContenedor.addComponent("Presentacion", "");
-        Component logica =logicaContenedor.addComponent("Logica", "");
-	Component persistencia = persistenciaContenedor.addComponent("Persistencia", "");
+
 
 	//Elements Tags
 
 
 	// Connections
   
-	user.uses(sistema, "Usa");
-        user.uses(interfazContenedor, "Usa");
-	user.uses(interfaz, "Usa");
-	interfazContenedor.uses(presentacionContenedor, "Usa");
-	interfazContenedor.uses(presentacion, "Usa");
-	interfaz.uses(presentacionContenedor, "Usa");
-	presentacionContenedor.uses(logicaContenedor, "Usa");
-	presentacionContenedor.uses(logica, "Usa");
-	presentacion.uses(logicaContenedor, "Usa");
-	logicaContenedor.uses(persistenciaContenedor, "Usa");
-	logicaContenedor.uses(persistencia, "Usa");
-	logica.uses(persistenciaContenedor, "Usa");
+	sistema.uses(bus, "");
+        interfaz.uses(bus, "");
+	mainframe.uses(bus, "");
+    }
 
+    public static void loadViews (Workspace workspace) { 
 	//Landscape view
-	
-	SystemLandscapeView systemView = views.createSystemLandscapeView("Sistema", "");
-        systemView.addAllElements();
 
-	ContainerView containerView = views.createContainerView(sistema, "Contenedores", "");
+	Model model = workspace.getModel();
+	ViewSet views = workspace.getViews();
+
+
+	SystemContextView contextView = views.createSystemContextView(sistema, "Contexto Sistema", "");
+	contextView.addNearestNeighbours(sistema);
+
+	ContainerView containerView = views.createContainerView(sistema, "Sistema Mainframe", "");
 	containerView.addAllElements();
 	
-	ComponentView interfazComponentView = views.createComponentView(interfazContenedor, "Interfaz Componentes", "");
-	interfazComponentView.addAllElements();
 
-	ComponentView presentacionComponentView = views.createComponentView(presentacionContenedor, "Presentacion Componentes", "");
-	presentacionComponentView.addAllElements();
+	ComponentView componentView = views.createComponentView(mainframe, "Componentes Mainframe", "");
+	componentView.addAllElements();
 
-	ComponentView logicaComponentView = views.createComponentView(logicaContenedor, "Logica Componentes", "");
-	logicaComponentView.addAllElements();
-	
-	ComponentView persistenciaComponentView = views.createComponentView(persistenciaContenedor, "Persistencia Componentes", "");
-	persistenciaComponentView.addAllElements();
-	
-	
-	
         // add some styling to the diagram elements
 
-	addStylingToDiagrams(views);
 
+	addStylingToDiagrams(views);
         // upload to structurizr.com (you'll need your own workspace ID, API key and API secret)
 
-	return workspace;
     }
 
 
@@ -129,8 +121,14 @@ public class Multicapa {
     }
 
 
-    public static void main(String[] args) throws Exception {
-	    
-	uploadWorkspaceToStructurizr(create());
-    }
+    /*public static void main(String[] args) throws Exception {
+
+
+        Workspace workspace = new Workspace("Getting Started", "This is a model of my software system.");
+        Model model = workspace.getModel();
+	ViewSet views = workspace.getViews();
+
+	uploadWorkspaceToStructurizr(create(workspace, model, views));
+    }*/
+
 }
