@@ -12,9 +12,9 @@ import com.structurizr.view.*;
  */
 public class ClienteServidorBus {
 
-    private static final long WORKSPACE_ID = 38549;
-    private static final String API_KEY = "fa603ed4-775b-44e6-9d69-5ee8518d881b";
-    private static final String API_SECRET = "44e200f6-b14f-420a-a1c3-715c2c70bf1b";
+    private static final long WORKSPACE_ID = 39053;
+    private static final String API_KEY = "4f20dbe2-dc35-438a-9118-0101014f3fed";
+    private static final String API_SECRET = "6976319b-4525-4860-8ad7-71734b9a68d4";
 
     private static final String MICROSERVICE_TAG = "Microservice";
     private static final String MESSAGE_BUS_TAG = "Message Bus";

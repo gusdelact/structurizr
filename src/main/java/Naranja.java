@@ -36,42 +36,47 @@ public class Naranja {
 
 
         SoftwareSystem yuawiAsaService = model.addSoftwareSystem("Yuawi As a Service", "");
-        Container dispositivo = yuawiAsaService.addContainer("Dispositivo Movil", "", "Android, iOS");
-        Container servidor = yuawiAsaService.addContainer("Servidor", "", "Aws EC2");
+        Container aplicacionMovil = yuawiAsaService.addContainer("Aplicacion Movil", "", "Ionic");
+        Container portal = yuawiAsaService.addContainer("Portal", "", "Java Spring MVC");
         SoftwareSystem payPal = model.addSoftwareSystem("Paypal", "");
         SoftwareSystem awsS3 = model.addSoftwareSystem("AWS S3", "");
         SoftwareSystem awsCognito = model.addSoftwareSystem("AWS Cognito", "");
+	awsS3.setUrl("https://s3.amazonaws.com/yuawi.gusdelact.com/Movimiento-Naranja-Yuawi.mp3");
 
 
         Person customer = model.addPerson(Location.External, "Usuario", "");
 
-	Component aplicacionMovil = dispositivo.addComponent("Aplicacion Movil", "", "Ionic");
-        Component portal = servidor.addComponent("Portal", "", "Rails");
+	Component interfazAplicacionMovil = aplicacionMovil.addComponent("Interfaz de usuario", "", "Ionic");
+	Component restClientAplicacionMovil = aplicacionMovil.addComponent("Controlador Cliente Rest", "", "Ionic");
+        Component interfazPortal = portal.addComponent("Interfaz de usuario", "", "Java Spring MVC");
+        Component restClientPortal = portal.addComponent("Controlador Cliente Rest", "", "Java Spring MVC");
 	//Elements Tags
 	
         
 	// Connections
 
         customer.uses(yuawiAsaService, "Usa");
-        customer.uses(dispositivo, "Usa");
-        customer.uses(servidor, "Usa");
         customer.uses(aplicacionMovil, "Usa");
         customer.uses(portal, "Usa");
+        customer.uses(interfazAplicacionMovil, "Accede");
+        customer.uses(interfazPortal, "Accede");
 	yuawiAsaService.uses(payPal, "Paga");
 	yuawiAsaService.uses(awsCognito, "Autentica");
 	yuawiAsaService.uses(awsS3, "Reproduce");
-	dispositivo.uses(awsS3, "Reproduce");
-	dispositivo.uses(awsCognito, "Autentica");
-	awsCognito.uses(dispositivo, "Confirma Creedenciales");
-	servidor.uses(payPal, "Paga");	
-	servidor.uses(awsCognito, "Guarda Creedenciales");
-	payPal.uses(servidor, "Confirma pago");
 	aplicacionMovil.uses(awsS3, "Reproduce");
 	aplicacionMovil.uses(awsCognito, "Autentica");
 	awsCognito.uses(aplicacionMovil, "Confirma Creedenciales");
-	portal.uses(payPal, "Paga");
+	portal.uses(payPal, "Paga");	
 	portal.uses(awsCognito, "Guarda Creedenciales");
 	payPal.uses(portal, "Confirma pago");
+	interfazAplicacionMovil.uses(restClientAplicacionMovil, "Usa");
+	restClientAplicacionMovil.uses(awsS3, "Reproduce");
+	restClientAplicacionMovil.uses(awsCognito, "Autentica");
+	awsCognito.uses(restClientAplicacionMovil, "Confirma Creedenciales");
+	interfazPortal.uses(restClientPortal, "Usa");
+	restClientPortal.uses(payPal, "Paga");
+	restClientPortal.uses(awsCognito, "Guarda Creedenciales");
+	payPal.uses(restClientPortal, "Confirma pago");
 
 	//Landscape view
 	
@@ -82,25 +87,25 @@ public class Naranja {
 	ContainerView containerView = views.createContainerView(yuawiAsaService, "Contenedores", "");
 	containerView.addAllElements();
 	
-	ComponentView dispositivoView = views.createComponentView(dispositivo, "Aplicacion Movil", "");
+	ComponentView dispositivoView = views.createComponentView(aplicacionMovil, "Aplicacion Movil", "");
 	dispositivoView.addAllElements();
 
-	ComponentView servidorView = views.createComponentView(servidor, "Portal Web", "");
+	ComponentView servidorView = views.createComponentView(portal, "Portal Web", "");
 	servidorView.addAllElements();
 
  
 	DynamicView servidorDynamicView = views.createDynamicView(yuawiAsaService, "Pago del servicio", "Diagrama que muestra el pago del servicio"); 
-	servidorDynamicView.add(customer, "Accede al portal para pagar el servicio", servidor);         
-	servidorDynamicView.add(servidor, "El usuario es dirigido a PayPal para completar su pago", payPal);         
-	servidorDynamicView.add(payPal, "Se confirma el pago", servidor);         
-	servidorDynamicView.add(servidor, "Se guardan las creedencuales del usuario", awsCognito);               
+	servidorDynamicView.add(customer, "Accede al portal para pagar el servicio", portal);         
+	servidorDynamicView.add(portal, "El usuario es dirigido a PayPal para completar su pago", payPal);         
+	servidorDynamicView.add(payPal, "Se confirma el pago", portal);         
+	servidorDynamicView.add(portal, "Se guardan las creedencuales del usuario", awsCognito);               
 
 
 	DynamicView dispositivoDynamicView = views.createDynamicView(yuawiAsaService, "Reproduccion de musica", "Diagrama que muestra el acceso al servicio"); 
-	dispositivoDynamicView.add(customer, "Accede a la aplicacion movil", dispositivo);         
-	dispositivoDynamicView.add(dispositivo, "Valida las creedenciales del usuario", awsCognito);         
-	dispositivoDynamicView.add(awsCognito, "Confirma las creedenciales", dispositivo);         
-	dispositivoDynamicView.add(dispositivo, "Reproduce el archivo", awsS3);               
+	dispositivoDynamicView.add(customer, "Accede a la aplicacion movil", aplicacionMovil);         
+	dispositivoDynamicView.add(aplicacionMovil, "Valida las creedenciales del usuario", awsCognito);         
+	dispositivoDynamicView.add(awsCognito, "Confirma las creedenciales", aplicacionMovil);         
+	dispositivoDynamicView.add(aplicacionMovil, "Reproduce el archivo", awsS3);               
 
 
 
