@@ -8,11 +8,11 @@ public class WorkspaceOne {
 	    return this.WORKSPACE_ID;
     }
 
-    public long key() {
+    public String key() {
 	    return this.API_KEY;
     }
 
-    public long secret() {
+    public String secret() {
 	    return this.API_SECRET;
     }
 
