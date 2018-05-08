@@ -12,11 +12,11 @@ import com.structurizr.view.*;
  */
 public class ClienteServidor {
 
-    private static final WorkspaceOne WORKSPACE = WorkspaceOne();
+    //private static final WorkspaceOne WORKSPACE = WorkspaceOne();
 
-    private static final long WORKSPACE_ID = WORKSPACE.id();
-    private static final String API_KEY = WORKSPACE.key();
-    private static final String API_SECRET = WORKSPACE.secret();
+    private static final long WORKSPACE_ID = WorkspaceOne.id();
+    private static final String API_KEY = WorkspaceOne.key();
+    private static final String API_SECRET = WorkspaceOne.secret();
 
     private static final String MICROSERVICE_TAG = "Microservice";
     private static final String MESSAGE_BUS_TAG = "Message Bus";
