@@ -12,7 +12,7 @@ import com.structurizr.view.*;
  */
 public class ClienteServidor {
 
-    private static final WorkspaceOne WORKSPACE = WorkspaceOne()
+    private static final WorkspaceOne WORKSPACE = WorkspaceOne();
 
     private static final long WORKSPACE_ID = WORKSPACE.id();
     private static final String API_KEY = WORKSPACE.key();
