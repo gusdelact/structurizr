@@ -13,9 +13,11 @@ import com.structurizr.view.*;
 public class Microservicios {
 
 
-    private static final long WORKSPACE_ID = 38565;
-    private static final String API_KEY = "9a853f81-19ed-475d-a218-40022362c8b2";
-    private static final String API_SECRET = "23bf7a7e-2c0b-4e57-9143-71c386922ee8";
+    private static final WorkspaceTwo WORKSPACE = new WorkspaceTwo();
+
+    private static final long WORKSPACE_ID = WORKSPACE.id();
+    private static final String API_KEY = WORKSPACE.key();
+    private static final String API_SECRET = WORKSPACE.secret();
 
     private static final String MICROSERVICE_TAG = "Microservice";
     private static final String MESSAGE_BUS_TAG = "Message Bus";

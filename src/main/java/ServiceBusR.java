@@ -13,9 +13,11 @@ import java.util.*;
  */
 public class ServiceBusR {
 
-    private static final long WORKSPACE_ID = 38549;
-    private static final String API_KEY = "fa603ed4-775b-44e6-9d69-5ee8518d881b";
-    private static final String API_SECRET = "44e200f6-b14f-420a-a1c3-715c2c70bf1b";
+    private static final WorkspaceThree WORKSPACE = new WorkspaceThree();
+
+    private static final long WORKSPACE_ID = WORKSPACE.id();
+    private static final String API_KEY = WORKSPACE.key();
+    private static final String API_SECRET = WORKSPACE.secret();
 
     private static final String MICROSERVICE_TAG = "Microservice";
     private static final String MESSAGE_BUS_TAG = "Message Bus";

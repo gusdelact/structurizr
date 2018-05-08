@@ -12,9 +12,11 @@ import com.structurizr.view.*;
  */
 public class Monolitico {
 
-    private static final long WORKSPACE_ID = 38550;
-    private static final String API_KEY = "134d5f9f-5a5d-4913-9944-bdb3bfd7a8f3";
-    private static final String API_SECRET = "f9f881a3-6d26-41fe-b310-c9b0f46d2e1c";
+    private static final WorkspaceOne WORKSPACE = new WorkspaceOne();
+
+    private static final long WORKSPACE_ID = WORKSPACE.id();
+    private static final String API_KEY = WORKSPACE.key();
+    private static final String API_SECRET = WORKSPACE.secret();
 
     private static final String MICROSERVICE_TAG = "Microservice";
     private static final String MESSAGE_BUS_TAG = "Message Bus";

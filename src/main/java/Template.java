@@ -12,9 +12,11 @@ import com.structurizr.view.*;
  */
 public class Template {
 
-    private static final long WORKSPACE_ID = 38505;
-    private static final String API_KEY = "2a7ff768-c92e-4ccf-9d71-ec19484864eb";
-    private static final String API_SECRET = "7e1779dc-9a08-4246-9a0a-a11ce2a5a981";
+    private static final WorkspaceOne WORKSPACE = new WorkspaceOne();
+
+    private static final long WORKSPACE_ID = WORKSPACE.id();
+    private static final String API_KEY = WORKSPACE.key();
+    private static final String API_SECRET = WORKSPACE.secret();
 
     public static void main(String[] args) throws Exception {
         // all software architecture models belong to a workspace
