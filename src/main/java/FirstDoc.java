@@ -12,7 +12,7 @@ import com.structurizr.view.*;
  */
 public class FirstDoc {
 
-    private static final WorkspaceOne WORKSPACE = new WorkspaceThree();
+    private static final WorkspaceThree WORKSPACE = new WorkspaceThree();
 
     private static final long WORKSPACE_ID = WORKSPACE.id();
     private static final String API_KEY = WORKSPACE.key();

@@ -12,7 +12,7 @@ import com.structurizr.view.*;
  */
 public class Complete {
 
-    private static final WorkspaceOne WORKSPACE = new WorkspaceTwo();
+    private static final WorkspaceTwo WORKSPACE = new WorkspaceTwo();
 
     private static final long WORKSPACE_ID = WORKSPACE.id();
     private static final String API_KEY = WORKSPACE.key();
